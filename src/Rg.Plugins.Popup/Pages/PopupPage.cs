@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Rg.Plugins.Popup.Animations;
 using Rg.Plugins.Popup.Enums;
@@ -10,6 +11,9 @@ namespace Rg.Plugins.Popup.Pages
 {
     public class PopupPage : ContentPage
     {
+        static long CurrentPageId;
+
+        public long PageId { get; private set; }
         #region Private
 
         private const string IsAnimatingObsoleteText = 
@@ -125,6 +129,7 @@ namespace Rg.Plugins.Popup.Pages
 
         public PopupPage()
         {
+            PageId = Interlocked.Increment(ref CurrentPageId);
             BackgroundColor = Color.FromHex("#80000000");
             Animation = new ScaleAnimation();
         }

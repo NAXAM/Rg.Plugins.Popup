@@ -30,6 +30,7 @@ namespace Rg.Plugins.Popup.IOS.Renderers
             {
                 CancelsTouchesInView = false
             };
+            ModalPresentationStyle = UIModalPresentationStyle.FullScreen;
         }
 
         protected override void Dispose(bool disposing)

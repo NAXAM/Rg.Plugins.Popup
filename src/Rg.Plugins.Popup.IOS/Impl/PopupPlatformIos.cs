@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoreGraphics;
 using Foundation;
@@ -16,9 +17,10 @@ using XFPlatform = Xamarin.Forms.Platform.iOS.Platform;
 namespace Rg.Plugins.Popup.IOS.Impl
 {
     [Preserve(AllMembers = true)]
-    internal class PopupPlatformIos : IPopupPlatform
+    internal class PopupPlatformIos : NSObject, IPopupPlatform
     {
         private bool IsiOS9OrNewer => UIDevice.CurrentDevice.CheckSystemVersion(9, 0);
+        Dictionary<long, PopupWindow> currentWindows = new Dictionary<long, PopupWindow>();
 
         public event EventHandler OnInitialized
         {
@@ -54,7 +56,7 @@ namespace Rg.Plugins.Popup.IOS.Impl
             {
                 window.Frame = new CGRect(0, 0, UIScreen.MainScreen.Bounds.Width, UIScreen.MainScreen.Bounds.Height);
             }
-
+            currentWindows.Add(page.PageId, window);
             await window.RootViewController.PresentViewControllerAsync(renderer.ViewController, false);
         }
 
@@ -66,6 +68,7 @@ namespace Rg.Plugins.Popup.IOS.Impl
             await Task.Delay(50);
 
             page.DescendantRemoved -= HandleChildRemoved;
+            currentWindows.Remove(page.PageId);
 
             if (renderer != null && viewController != null && !viewController.IsBeingDismissed)
             {

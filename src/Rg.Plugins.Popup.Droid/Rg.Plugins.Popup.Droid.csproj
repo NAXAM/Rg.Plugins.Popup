@@ -15,7 +15,6 @@
     <FileAlignment>512</FileAlignment>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -131,7 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Rg.Plugins.Popup\Rg.Plugins.Popup.csproj">
-      <Project>{67F9D3A8-F71E-4428-913F-C37AE82CDB24}</Project>
+      <Project>{34678DA9-98F1-4BCC-A7A1-C9EC5DA1CE5C}</Project>
       <Name>Rg.Plugins.Popup</Name>
       <Private>True</Private>
     </ProjectReference>
